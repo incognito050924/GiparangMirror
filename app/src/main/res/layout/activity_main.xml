@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context="richslide.com.giparangmirror.MainActivity">
+
+    <!-- 화면: 측정하기 -->
+    <LinearLayout
+        android:id="@+id/layoutPreview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- 상단 로고 + 시계 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:orientation="horizontal"
+            android:background="@color/black">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo"
+                android:layout_gravity="center_vertical"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right|center_vertical">
+                <TextView
+                    android:id="@+id/txtDays"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    android:text="2017.10.19 목요일"/>
+                <TextView
+                    android:id="@+id/txtTimes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="10dp"
+                    android:paddingLeft="7dp"
+                    android:text="PM 02:25"/>
+            </LinearLayout>
+        </LinearLayout><!-- 상단 로고 + 시계 -->
+
+        <!-- 메뉴바 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="50"
+                android:layout_height="35dp"
+                android:text="@string/app_menu_main"
+                android:textSize="13dp"
+                android:textColor="@color/black"
+                android:background="@drawable/btn_main_sel"/>
+            <Button
+                android:onClick="goHistoryHandler"
+                android:layout_width="0dp"
+                android:layout_weight="50"
+                android:layout_height="35dp"
+                android:text="@string/app_menu_history"
+                android:textSize="13dp"
+                android:textColor="@color/blue"
+                android:background="@drawable/btn_history"/>
+        </LinearLayout><!-- 메뉴바 -->
+
+        <!-- 콘텐츠영역 -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- 카메라 영상(??) 여기에 넣어주세요 android:layout_width="match_parent" android:layout_height="match_parent" -->
+            <!-- 딱 요기입니당! -->
+            <TextureView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/cameraTextureView"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+
+            <!-- T-zone표시 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:src="@color/blank" android:background="@drawable/img70" />
+                        <!--android:src="@drawable/img_black" android:background="@color/black"/> -->
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/camera_back"
+                        android:scaleType="center"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:src="@color/blank" android:background="@drawable/img70" />
+                        <!--android:src="@drawable/img_black" android:background="@color/black" />-->
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 가이드& 촬영버튼 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="12dp"
+                android:paddingRight="12dp"
+                android:layout_gravity="bottom|right"
+                android:orientation="vertical">
+                <!--
+                android:paddingLeft="12dp"
+                -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="@string/txt_shooting_description"
+                    android:textSize="10dp"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="10dp"/>
+                <Button android:onClick="onClickHandler"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:background="@color/blue"
+                    android:text="측정하기"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+        </FrameLayout><!-- 콘텐츠영역 -->
+
+    </LinearLayout><!-- 화면: 측정하기 -->
+
+
+    <!-- 화면: 측정결과 -->
+    <LinearLayout
+        android:id="@+id/layoutChart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <!-- 상단바 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <ImageButton
+                android:onClick="chartBackPressed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/btn_back"
+                android:background="@color/blank"/>
+            <TextView
+                android:id="@+id/txtToday"
+                android:layout_width="wrap_content"
+                android:layout_weight="100"
+                android:layout_height="wrap_content"
+                android:text="2017년 10월 19일 측정결과"
+                android:textSize="13dp"
+                android:textColor="@color/white"
+                android:textAlignment="center"/>
+        </LinearLayout><!-- 상단바 -->
+
+        <!-- 차트 + 종합점수 + 점수표 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+
+            <!-- 레이더 차트 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="100"
+                android:layout_height="match_parent"
+                android:background="@drawable/img_chart_back"
+                android:gravity="center_horizontal|center_vertical">
+
+                <!-- 레이더 차트 영역입니다 android:layout_width="match_parent" android:layout_height="match_parent"-->
+                <!-- 레이더차트 방사선(*요모양) 실선색상 #373737, 점선은 기본 색상 그대로 사용, 두께도 그대로 사용 -->
+                <!-- 레이더 차트 그래프 선색상 #00bbd4, 지표 찍는 점은 동그라미로 사용(#00bbd4), 면적 채우는 색상은 #00bbd4(선과같음)과 투명도 30%(100%가 완전 불투명-0%는 투명) -->
+                <!-- 레이더 차트 라벨 색상 #a0a0a0 사이즈 12dp -->
+                <!-- 딱 요기입니당! -->
+                <com.github.mikephil.charting.charts.RadarChart
+                    android:id="@+id/chart1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout><!-- 레이더 차트 -->
+
+            <!-- 종합점수 + 점수표 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="100"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+                <!-- 종합점수 -->
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="100"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical|center_horizontal">
+                    <LinearLayout
+                        android:layout_width="115dp"
+                        android:layout_height="115dp"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:background="@drawable/img_circle">
+                        <TextView
+                            android:id="@+id/txtTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:text="72"
+                            android:textSize="43dp"
+                            android:textColor="@color/skyblue"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txt_score_total"
+                            android:textAlignment="center"
+                            android:textSize="13dp"
+                            android:textColor="@color/white"/>
+                    </LinearLayout>
+                </LinearLayout><!-- 종합점수 -->
+
+                <!-- 점수표 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="97dp"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <!-- 모공점수 -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_weight="10"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center" >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txt_score_pore"
+                            android:textAlignment="center"
+                            android:textSize="10dp"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:id="@+id/txtPore"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:text="100"
+                            android:textSize="25dp"
+                            android:textColor="@color/skyblue"/>
+                    </LinearLayout>
+                    <FrameLayout
+                        android:layout_width="0.25dp"
+                        android:layout_height="38dp"
+                        android:background="@color/gray333"></FrameLayout>
+                    <!-- 홍반점수 -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_weight="10"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center" >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txt_score_redspot"
+                            android:textAlignment="center"
+                            android:textSize="10dp"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:id="@+id/txtErythema"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:text="100"
+                            android:textSize="25dp"
+                            android:textColor="@color/skyblue"/>
+                    </LinearLayout>
+                    <FrameLayout
+                        android:layout_width="0.25dp"
+                        android:layout_height="38dp"
+                        android:background="@color/gray333"></FrameLayout>
+                    <!-- 주름점수 -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_weight="10"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center" >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txt_score_wrinkle"
+                            android:textAlignment="center"
+                            android:textSize="10dp"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:id="@+id/txtWrinkle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:text="100"
+                            android:textSize="25dp"
+                            android:textColor="@color/skyblue"/>
+                    </LinearLayout>
+                    <FrameLayout
+                        android:layout_width="0.25dp"
+                        android:layout_height="38dp"
+                        android:background="@color/gray333"></FrameLayout>
+                    <!-- 반점점수 -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_weight="10"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center" >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txt_score_spot"
+                            android:textAlignment="center"
+                            android:textSize="10dp"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:id="@+id/txtPigmentation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:text="100"
+                            android:textSize="25dp"
+                            android:textColor="@color/skyblue"/>
+                    </LinearLayout>
+                    <FrameLayout
+                        android:layout_width="0.25dp"
+                        android:layout_height="38dp"
+                        android:background="@color/gray333"></FrameLayout>
+                    <!-- 감정상태 -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_weight="10"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center" >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txt_score_feeling"
+                            android:textAlignment="center"
+                            android:textSize="10dp"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:id="@+id/txtEmotion"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:text="100"
+                            android:textSize="25dp"
+                            android:textColor="@color/skyblue"/>
+                    </LinearLayout>
+                </LinearLayout><!-- 점수표 -->
+            </LinearLayout><!-- 종합점수 + 점수표 -->
+
+        </LinearLayout><!-- 차트 + 종합점수 + 점수표 -->
+
+    </LinearLayout><!-- 화면: 측정결과 -->
+
+
+
+    <LinearLayout
+        android:id="@+id/layoutProgress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/black70"
+        android:gravity="center_horizontal|center_vertical">
+
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/txtProgess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            android:text="@string/txt_wait_msg"/>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

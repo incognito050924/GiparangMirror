@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">GiparangMirror</string>
+    
+    <string name="app_menu_main">실시간 피부진단</string>
+    <string name="app_menu_history">히스토리</string>
+
+    <string name="txt_shooting">측정하기</string>
+    <string name="txt_shooting_description">T-Zone을 맞춘 뒤 측정 버튼을 눌러주세요</string>
+    <string name="txt_score_total">종합점수</string>
+    <string name="txt_score_pore">모공점수</string>
+    <string name="txt_score_redspot">홍반점수</string>
+    <string name="txt_score_wrinkle">주름점수</string>
+    <string name="txt_score_spot">반점점수</string>
+    <string name="txt_score_feeling">감정상태</string>
+
+    <string name="txt_score_totaltoday">오늘 종합점수</string>
+    <string name="txt_wait_msg">분석 중 입니다.</string>
+</resources>

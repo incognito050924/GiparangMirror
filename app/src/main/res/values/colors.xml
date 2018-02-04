@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@android:color/transparent</color>
+    <color name="colorPrimaryDark">@android:color/transparent</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="blank">@android:color/transparent</color>
+    <color name="black">#000000</color>
+    <color name="black70">#70000000</color>
+    <color name="white">#ffffff</color>
+    <color name="grayccc">#cccccc</color>
+    <color name="gray333">#333333</color>
+    <color name="blue">#24a3d8</color>
+    <color name="skyblue">#00bbd4</color>
+    <color name="pink">#e91d62</color>
+
+    <color name="color_preloader_start">#000000</color>
+    <color name="color_preloader_center">#000000</color>
+    <color name="color_preloader_end">#ff56a9c7</color>
+</resources>
